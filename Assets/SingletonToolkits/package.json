@@ -1,0 +1,20 @@
+{
+  "name": "com.le0der.singleton",
+  "version": "1.0.0",
+  "displayName": "Singleton Tools",
+  "description": "A collection of Singleton implementations for Unity, including MonoBehaviour and regular Singleton patterns.",
+  "unity": "2022.3",
+  "author": {
+    "name": "le0der",
+    "email": "le0der@163.com",
+    "url": "https://le0der.top"
+  },
+  "dependencies": {},
+  "keywords": [
+    "singleton",
+    "mono",
+    "tools",
+    "unity"
+  ],
+  "license": "MIT"
+}

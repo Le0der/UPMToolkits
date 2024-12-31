@@ -1,0 +1,16 @@
+{
+    "name": "EditorSingletonAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b3fa6d0e56d6e5a4a8745834562db08c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
