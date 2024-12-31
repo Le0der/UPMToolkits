@@ -51,7 +51,35 @@ UPMToolkits/                     // 工程根目录
 
 ### 1. 创建工具包文件夹
 
-​	在 `Assets/` 下创建一个新的文件夹，例如 `ToolX`，并将工具的所有内容放入其中。
+​	在 `Assets/` 下创建一个新的文件夹，例如 `ToolX`，并将工具的所有内容放入其中。文件结构如下：
+
+```arduino
+<root>
+  ├── package.json
+  ├── README.md
+  ├── CHANGELOG.md
+  ├── LICENSE.md
+  ├── Third Party Notices.md
+  ├── Editor
+  │   ├── [company-name].[package-name].Editor.asmdef
+  │   └── EditorExample.cs
+  ├── Runtime
+  │   ├── [company-name].[package-name].asmdef
+  │   └── RuntimeExample.cs
+  ├── Tests
+  │   ├── Editor
+  │   │   ├── [company-name].[package-name].Editor.Tests.asmdef
+  │   │   └── EditorExampleTest.cs
+  │   └── Runtime
+  │        ├── [company-name].[package-name].Tests.asmdef
+  │        └── RuntimeExampleTest.cs
+  ├── Samples~
+  │        ├── SampleFolder1
+  │        ├── SampleFolder2
+  │        └── ...
+  └── Documentation~
+       └── [package-name].md
+```
 
 ### 2.编写 `package.json` 文件
 
@@ -65,9 +93,9 @@ UPMToolkits/                     // 工程根目录
   "description": "Tool X 是一个为 Unity 编辑器提供新功能的工具。",
   "unity": "2022.3",
   "author": {
-    "name": "Your Name",
-    "email": "your.email@example.com",
-    "url": "https://yourwebsite.com"
+    "name": "le0der",
+    "email": "le0der@163.com",
+    "url": "https://le0der.top"
   },
   "dependencies": {
     "com.unity.textmeshpro": "3.0.6"
@@ -86,16 +114,32 @@ UPMToolkits/                     // 工程根目录
 ​	在工具包的 `Runtime/` 或 `Editor/` 文件夹中编写工具功能代码。确保根据工具的类型（运行时还是编辑器工具）将代码放置到合适的文件夹中。
 
 - `Runtime/` 用于实现游戏运行时的功能。
+
 - `Editor/` 用于编辑器扩展，例如自定义窗口、脚本编辑器等。
 
-### 4.实现工具功能
+  
+
+### 4.添加 asmdef 文件
+
+​	如果要开发包含脚本的插件包，建议添加一个**asmdef**文件，详细信息可以查看官方文档[Unity - Manual: Assembly definitions](https://docs.unity3d.com/2022.3/Documentation/Manual/ScriptCompilationAssemblyDefinitionFiles.html)。
+
+​	这个 asmdef 文件能将它所在的文件夹及其子文件夹的脚本打到一个独立的程序集中，表象上就是这些个脚本打到了独立的 dll 中了。
+
+​	简单的说下 asmdef 文件的优势.
+
+  - 更短的编译时间
+  - 把"internal"访问修饰符用到了极致（要知道以往的源代码插件，因为与用户脚本编译在了同一个程序集，所以它的 Internal 修饰符并没起到应有的作用，暴露了太多，就是一个掩耳盗铃的迪米特法则罢）
+  - 允许使用 unsafe code
+  - .dll 文件可以指定特定的程序集引用。
+
+### 5.测试工具功能
 
 ​	如果工具需要测试，确保在工具包中包含 `Tests/` 文件夹，并编写相关的单元测试代码。可以使用 Unity 的 **Test Framework** 来进行测试。
 
-### 5.更新工具包信息
+### 6.更新工具包信息
 
 ​	确保 `package.json` 文件中已经包含所有必要的字段，并根据工具功能的变化调整版本号（遵循语义化版本规则）。
 
-### 6. 发布工具
+### 7. 发布工具
 
 ​	一旦工具完成，可以将其上传到 Git 仓库并通过 Git URL 引用。也可以选择将其发布到 OpenUPM 或通过私有 npm 注册表发布。
